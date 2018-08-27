@@ -25,6 +25,12 @@ describe('LetterFactory', function () {
             
             expect(LetterFactory.checkLetter('c')).toBe(true);
         });
+        it('should add letters to array of guessed letters', function () {
+            LetterFactory.getLettersFromWord('cat');
+            LetterFactory.checkLetter('c');
+
+            expect(LetterFactory.checkedLetters[0] === 'c');
+        });
     });
     describe('.getLettersFromWord', function () {
         it('should exist', function () {
@@ -37,5 +43,9 @@ describe('LetterFactory', function () {
             expect(LetterFactory.checkLetter('t')).toBe(true);
         });
     });
-
+    describe('checkedLetters', function () {
+        it('should exist', function () {
+            expect(LetterFactory.checkedLetters).toBeDefined();
+        });
+    });
 });
