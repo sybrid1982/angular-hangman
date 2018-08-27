@@ -48,4 +48,9 @@ describe('LetterFactory', function () {
             expect(LetterFactory.checkedLetters).toBeDefined();
         });
     });
+    describe('.isLetterChecked', function () {
+        it('should exist', function () {
+            expect(LetterFactory.isLetterChecked).toBeDefined();
+        });
+    });
 });
