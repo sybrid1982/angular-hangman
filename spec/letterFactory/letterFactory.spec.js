@@ -59,10 +59,22 @@ describe('LetterFactory', function () {
             expect(LetterFactory.isLetterChecked).toBeDefined();
         });
         it('returns letter.UNUSED if letter has not been used', function() {
-            expect(LetterFactory.isLetterChecked('a')===(letterState.UNUSED));
+            expect(LetterFactory.isLetterChecked('a')).toEqual(letterState.UNUSED);
         });
         it('does not return letter.FAIL if letter has been used and is not on list', function(){
-            expect(LetterFactory.isLetterChecked('a')!==(!letterState.FAIL));
+            expect(LetterFactory.isLetterChecked('a')).not.toEqual(letterState.FAIL);
+        });
+        it('returns letter.SUCCESS if letter has been used and is on list', function() {
+            LetterFactory.getLettersFromWord('cat');
+            LetterFactory.guessLetter('a');
+
+            expect(LetterFactory.isLetterChecked('a')).toEqual(letterState.SUCCESS);
+        });
+        it('returns letter.FAIL if letter has been used and is not on list', function() {
+            LetterFactory.getLettersFromWord('cat');
+            LetterFactory.guessLetter('d');
+
+            expect(LetterFactory.isLetterChecked('d')).toEqual(letterState.FAIL);
         })
     });
 });
