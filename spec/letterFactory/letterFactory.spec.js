@@ -1,6 +1,12 @@
 describe('LetterFactory', function () {
     let LetterFactory;
 
+    const letterState = {
+        UNUSED: 'unused',
+        FAIL: 'fail',
+        SUCCESS: 'success',
+    }
+
     beforeEach(angular.mock.module('App'))
     
     beforeEach(inject(function(_LetterFactory_) {
@@ -52,5 +58,11 @@ describe('LetterFactory', function () {
         it('should exist', function () {
             expect(LetterFactory.isLetterChecked).toBeDefined();
         });
+        it('returns letter.UNUSED if letter has not been used', function() {
+            expect(LetterFactory.isLetterChecked('a')===(letterState.UNUSED));
+        });
+        it('does not return letter.FAIL if letter has been used and is not on list', function(){
+            expect(LetterFactory.isLetterChecked('a')!==(!letterState.FAIL));
+        })
     });
 });
